@@ -1,0 +1,20 @@
+// CSS Variables for themes
+:root {
+  --gray-50: #f9fafb;
+  --gray-900: #111827;
+  --blue-500: #3b82f6;
+  --blue-600: #2563eb;
+}
+
+[data-theme="dark"] {
+  --gray-50: #111827;
+  --gray-900: #f9fafb;
+  --blue-500: #60a5fa;
+  --blue-600: #3b82f6;
+}
+
+// SCSS variables (for compatibility)
+$gray-50: var(--gray-50);
+$gray-900: var(--gray-900);
+$blue-500: var(--blue-500);
+$blue-600: var(--blue-600);

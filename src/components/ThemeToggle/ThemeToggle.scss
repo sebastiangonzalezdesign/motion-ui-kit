@@ -1,0 +1,25 @@
+@import '../../styles/abstracts/colors';
+@import '../../styles/abstracts/tokens';
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.theme-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: $text-primary;
+}

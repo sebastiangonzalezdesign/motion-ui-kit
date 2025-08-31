@@ -1,0 +1,59 @@
+// Import abstracts
+@import 'abstracts/colors';
+@import 'abstracts/tokens';
+@import 'abstracts/motion';
+
+// Import base
+@import 'base/reset';
+@import 'base/typography';
+
+// Import layout
+@import 'layout/grid';
+
+// Import components
+@import '../components/Button/Button.scss';
+@import '../components/Card/Card.scss';
+@import '../components/Modal/Modal.scss';
+@import '../components/Navbar/Navbar.scss';
+@import '../components/ThemeToggle/ThemeToggle.scss';
+@import '../components/Toggle/Toggle.scss';
+
+// App styles
+.app {
+  min-height: 100vh;
+  background-color: $background-primary;
+  color: $text-primary;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.page {
+  margin-top: 2rem;
+}
+
+.upgrade-cta {
+  margin-top: 3rem;
+  text-align: center;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 0.5rem;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: $brand-primary;
+  color: $background-primary;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: background-color $motion-normal;
+}
+
+.cta-button:hover {
+  background-color: $brand-hover;
+}

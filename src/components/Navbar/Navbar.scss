@@ -1,0 +1,61 @@
+@import '../../styles/abstracts/colors';
+@import '../../styles/abstracts/tokens';
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: $background-primary;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.navbar-brand a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: $brand-primary;
+  text-decoration: none;
+}
+
+.navbar-nav {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-nav li {
+  margin: 0 1rem;
+}
+
+.navbar-nav a {
+  text-decoration: none;
+  color: $text-primary;
+  font-weight: 500;
+}
+
+.navbar-nav a:hover {
+  color: $brand-primary;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: $text-primary;
+}
+
+.upgrade-link {
+  background-color: $brand-primary;
+  color: $background-primary;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+}
+
+.upgrade-link:hover {
+  background-color: $brand-hover;
+}

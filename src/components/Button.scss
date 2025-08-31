@@ -1,0 +1,18 @@
+@import '../styles/abstracts/colors';
+@import '../styles/abstracts/tokens';
+@import '../styles/abstracts/motion';
+
+.button {
+  padding: 0.75rem 1.5rem;
+  background-color: $brand-primary;
+  color: $background-primary;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color $motion-normal;
+
+  &:hover {
+    background-color: adjust-color($brand-primary, $lightness: -10%);
+  }
+}
