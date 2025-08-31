@@ -5,6 +5,7 @@ $background-primary: $gray-50;
 $text-primary: $gray-900;
 $brand-primary: $blue-500;
 $brand-hover: $blue-600;
+$logo-color: $gray-900; // Logo color token, uses $gray-900 for light/dark switching
 
 // Typography tokens
 $font-family-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;

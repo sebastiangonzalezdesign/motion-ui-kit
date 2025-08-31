@@ -35,6 +35,7 @@
 }
 
 .logo-animated {
+  color: $logo-color; // Uses the token for theming
   transition: transform 0.3s ease;
   display: inline-block;
   line-height: 0;
