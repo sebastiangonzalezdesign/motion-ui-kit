@@ -4,6 +4,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import Button from '../Button/Button';
 import './Navbar.scss';
+const logoUrl = new URL('../../assets/logo.svg', import.meta.url).href;
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -54,8 +55,10 @@ const Navbar = () => {
 
   return (
     <nav className="navbar" ref={navbarRef}>
-      <div className="navbar-brand">
-        <Link to="/">UI Motion Kit Free</Link>
+      <div className="navbar-brand" aria-label="Motion UI Kit">
+        <Link to="/" aria-label="Motion UI Kit">
+          <img src={logoUrl} alt="Motion UI Kit" width={48} height={24} className="logo-animated" />
+        </Link>
       </div>
 
       {viewport === 'mobile' && (

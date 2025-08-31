@@ -33,6 +33,25 @@
     font-size: 1.5rem;
   }
 }
+
+.logo-animated {
+  transition: transform 0.3s ease;
+  display: inline-block;
+  line-height: 0;
+}
+
+.logo-animated:hover {
+  transform: scale(1.06) rotate(0.5deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-animated {
+    transition: none;
+  }
+  .logo-animated:hover {
+    transform: none;
+  }
+}
   .buttons-wrapper{
     display: flex;
     align-items: center;
