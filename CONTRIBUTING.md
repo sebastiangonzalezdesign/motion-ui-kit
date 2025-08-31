@@ -1,11 +1,27 @@
-Thank you for your interest in contributing to Motion UI Kit.
+# Contributing to Motion UI Kit
 
-Guidelines
+Thanks for your interest in contributing! 🎉
 
-- Keep PRs small and focused (one visual or functional change per PR).
-- Run `npm run format` before submitting a PR.
-- For new components, include a demo in `src/pages` and a simple smoke test under `src/__tests__`.
+We welcome bug fixes, improvements, and new ideas. To keep things simple and consistent, please follow these guidelines:
 
-If you're unsure about API changes, open an issue first to discuss.
+## 💻 Pull Requests
 
-Thanks!
+- Keep PRs small and focused — one visual or functional change per PR.
+- Always run `npm run format` before submitting to ensure code style consistency.
+- For new components:
+  - Add a demo under `src/pages/`
+  - Add a simple smoke test under `src/__tests__/`
+
+## 🗣 Discussions
+
+- If you’re unsure about API changes or larger refactors, please [open an issue](../../issues) first so we can discuss.
+
+## ✅ Checklist before submitting
+
+- Code compiles (`npm run build`)
+- Tests pass (`npm test`)
+- No linting or formatting errors
+
+---
+
+Thanks for helping improve **Motion UI Kit**! 🚀
