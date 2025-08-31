@@ -18,6 +18,48 @@
     background-color: $brand-hover;
   }
 
+  // Variant styles
+  &--outline {
+    background-color: transparent;
+    color: $brand-primary;
+    border: 2px solid $brand-primary;
+
+    &:hover {
+      background-color: $brand-primary;
+      color: $background-primary;
+    }
+
+    // Dark mode support for outline variant
+    [data-theme='dark'] & {
+      color: $brand-primary;
+      border-color: $brand-primary;
+
+      &:hover {
+        background-color: $brand-primary;
+        color: $background-primary;
+      }
+    }
+  }
+
+  &--ghost {
+    background-color: transparent;
+    color: $brand-primary;
+    border: none;
+
+    &:hover {
+      background-color: rgba($brand-primary, 0.1);
+    }
+
+    // Dark mode support for ghost variant
+    [data-theme='dark'] & {
+      color: $brand-primary;
+
+      &:hover {
+        background-color: rgba($brand-primary, 0.2);
+      }
+    }
+  }
+
   // Responsive sizing
   @include respond('sm') {
     width: auto; // Auto width on small screens and up
@@ -55,5 +97,34 @@
 
   @include respond('md') {
     padding: 1rem 2rem;
+  }
+}
+
+// Icon and content layout
+.button {
+  display: flex;
+  align-items: center;
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    &--left {
+      margin-right: 0.5rem;
+    }
+
+    &--right {
+      margin-left: 0.5rem;
+    }
+  }
+
+  &__content {
+    display: inline;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
   }
 }

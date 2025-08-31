@@ -1,5 +1,6 @@
 @use '../../styles/abstracts/colors' as *;
 @use '../../styles/abstracts/tokens' as *;
+@use '../../styles/helpers/components' as *;
 
 .modal-overlay {
   position: fixed;
@@ -21,14 +22,46 @@
   max-width: 500px;
   width: 90%;
   position: relative;
+  color: $text-primary;
 }
 
 .modal-close {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
+}
+
+// Additional classes for modal content variations
+.modal-content--centered {
+  text-align: center;
+  padding: $space-xl 0;
+}
+
+.modal-content--basic {
+  padding: $space-lg;
+}
+
+/* modal action and helper styles are provided by the shared helpers partial */
+
+.modal-title {
+  margin: 0 0 $space-sm 0;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: $text-primary;
+}
+
+.modal-title--large {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  margin: 0 0 $space-lg 0;
+}
+
+.modal-description {
+  margin: 0 0 $space-xl 0;
+  color: rgba($text-primary, 0.7);
+  line-height: 1.6;
+}
+
+.modal-description--small {
+  margin: 0 0 $space-lg 0;
 }

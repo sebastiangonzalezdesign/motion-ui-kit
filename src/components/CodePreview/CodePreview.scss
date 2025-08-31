@@ -4,9 +4,17 @@
 
 .code-preview {
   margin-bottom: 1.5rem;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid $border-color;
   border-radius: 0.5rem;
   overflow: hidden;
+  background-color: $background-primary;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  // Enhanced dark mode support
+  [data-theme='dark'] & {
+    border-color: $border-color-dark;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
 
   @include respond('sm') {
     margin-bottom: 2rem;
@@ -16,9 +24,17 @@
 .code-preview h4 {
   margin: 0;
   padding: 0.75rem;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: $surface-elevated;
   font-size: 0.875rem;
   font-weight: 600;
+  color: $text-primary;
+  border-bottom: 1px solid $border-color;
+
+  // Enhanced dark mode support
+  [data-theme='dark'] & {
+    background-color: $surface-elevated-dark;
+    border-bottom-color: $border-color-dark;
+  }
 
   @include respond('sm') {
     padding: 1rem;
@@ -28,8 +44,14 @@
 
 .tabs {
   display: flex;
-  background-color: rgba(0, 0, 0, 0.05);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: $surface-elevated;
+  border-bottom: 1px solid $border-color;
+
+  // Enhanced dark mode support
+  [data-theme='dark'] & {
+    background-color: $surface-elevated-dark;
+    border-bottom-color: $border-color-dark;
+  }
 }
 
 .tab {
@@ -50,13 +72,23 @@
 }
 
 .tab:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: $surface-elevated;
+
+  // Enhanced dark mode support
+  [data-theme='dark'] & {
+    background-color: $surface-elevated-dark;
+  }
 }
 
 .tab.active {
   background-color: $background-primary;
   color: $brand-primary;
   border-bottom: 2px solid $brand-primary;
+
+  // Enhanced dark mode support
+  [data-theme='dark'] & {
+    background-color: $background-primary;
+  }
 }
 
 .tab-content {
@@ -80,9 +112,15 @@
 }
 
 .code-content {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: $surface-elevated;
   border-radius: 0.25rem;
   overflow-x: auto;
+
+  // Enhanced dark mode support
+  [data-theme='dark'] & {
+    background-color: $surface-elevated-dark;
+    border: 1px solid $border-color-dark;
+  }
 }
 
 .code-content pre {

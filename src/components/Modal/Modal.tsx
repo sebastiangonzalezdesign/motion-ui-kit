@@ -1,4 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect } from 'react';
+import { XMarkIcon } from '@heroicons/react/24/outline';
+import IconButton from '../IconButton/IconButton';
 import './Modal.scss';
 
 interface ModalProps {
@@ -8,6 +11,19 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+  useEffect(() => {
+    if (isOpen) {
+      // Prevent body scroll when modal is open
+      const originalStyle = window.getComputedStyle(document.body).overflow;
+      document.body.style.overflow = 'hidden';
+
+      // Restore original overflow when modal closes
+      return () => {
+        document.body.style.overflow = originalStyle;
+      };
+    }
+  }, [isOpen]);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -27,9 +43,14 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
             onClick={(e) => e.stopPropagation()}
           >
             {children}
-            <button className="modal-close" onClick={onClose}>
-              ×
-            </button>
+            <IconButton
+              icon={XMarkIcon}
+              onClick={onClose}
+              variant="ghost"
+              size="md"
+              className="modal-close"
+              aria-label="Close modal"
+            />
           </motion.div>
         </motion.div>
       )}

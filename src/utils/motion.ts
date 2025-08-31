@@ -1,4 +1,5 @@
 import type { Variants } from 'framer-motion';
+import { easeInOut } from 'framer-motion';
 
 // Page transition variants
 export const pageVariants: Variants = {
@@ -17,8 +18,8 @@ export const pageVariants: Variants = {
 };
 
 export const pageTransition = {
-  type: 'tween',
-  ease: 'anticipate',
+  type: 'tween' as const,
+  ease: easeInOut,
   duration: 0.5,
 };
 

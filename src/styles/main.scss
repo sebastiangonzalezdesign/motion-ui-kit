@@ -16,20 +16,32 @@
 @use '../components/Card/Card.scss' as *;
 @use '../components/Modal/Modal.scss' as *;
 @use '../components/Navbar/Navbar.scss' as *;
+@use '../components/Footer/Footer.scss' as *;
 @use '../components/ThemeToggle/ThemeToggle.scss' as *;
 @use '../components/Toggle/Toggle.scss' as *;
+@use '../components/Hero/Hero.scss' as *;
 
 // App styles
 .app {
   min-height: 100vh;
   background-color: $background-primary;
   color: $text-primary;
+  display: flex;
+  flex-direction: column;
+}
+
+// Page wrapper styles
+.home,
+.page {
+  background-color: transparent; // Ensure page backgrounds don't override Hero
 }
 
 .container {
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   padding: 1rem;
+  flex: 1;
 
   @include respond('sm') {
     padding: 1.5rem;
@@ -52,12 +64,67 @@
   }
 }
 
+.features-grid {
+  margin-top: 3rem;
+  padding: 2rem 0;
+
+  .features-header {
+    grid-column: 1 / -1; // Span all columns
+    text-align: center;
+    margin-bottom: 2rem;
+
+    h2 {
+      font-size: $font-size-3xl;
+      font-weight: $font-weight-bold;
+      color: $text-primary;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: $font-size-lg;
+      color: rgba($text-primary, 0.7);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+}
+
 .upgrade-cta {
   margin-top: 3rem;
   text-align: center;
-  padding: 2rem;
-  background-color: rgba(0, 0, 0, 0.05);
-  border-radius: 0.5rem;
+  padding: 3rem 2rem;
+  background: $brand-bg-gradient;
+  border-radius: 1rem;
+  border: 1px solid rgba($brand-primary, 0.1);
+
+  h2 {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $text-primary;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: $font-size-base;
+    color: rgba($text-primary, 0.8);
+    margin-bottom: 2rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  [data-theme='dark'] & {
+    background: $brand-bg-gradient-dark;
+    border-color: rgba($brand-primary, 0.2);
+  }
+
+  // Ensure button is centered and has proper spacing
+  .button {
+    margin: 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
 }
 
 .cta-button {
@@ -69,8 +136,8 @@
   border-radius: 0.5rem;
   font-weight: 500;
   transition: background-color $motion-normal;
-}
 
-.cta-button:hover {
-  background-color: $brand-hover;
+  &:hover {
+    background-color: $brand-hover;
+  }
 }

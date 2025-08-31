@@ -1,47 +1,145 @@
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import Card from '../components/Card/Card';
+import Hero from '../components/Hero/Hero';
+import Button from '../components/Button/Button';
+import {
+  CursorArrowRaysIcon,
+  RectangleStackIcon,
+  Squares2X2Icon,
+  SparklesIcon,
+} from '@heroicons/react/24/outline';
 
 const Home = () => {
   return (
-    <div className="home">
-      <div className="hero-section">
-        <h1>Build Better UIs Faster</h1>
-        <p>Explore our free animated components, powered by Framer Motion.</p>
-        <div className="hero-preview">
-          {/* Placeholder for preview GIF/animation */}
-          <div className="preview-placeholder">
-            <div className="preview-animation">
-              🎨 Interactive Components Preview
-            </div>
-            <p>Replace with actual GIF showing component interactions</p>
+    <main className="home page">
+      <Hero
+        headline="Build Better UIs Faster"
+        description="Explore our free animated components, powered by Framer Motion."
+        backgroundColor="brand-gradient"
+        borderRadius="lg"
+        size="lg"
+        actions={
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+            >
+              <Button size="md">
+                <Link to="/buttons" style={{ color: 'inherit', textDecoration: 'none' }}>
+                  Get Started
+                </Link>
+              </Button>
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+            >
+              <Button
+                size="md"
+                variant="outline"
+                onClick={() =>
+                  document.querySelector('.features-grid')?.scrollIntoView({ behavior: 'smooth' })
+                }
+              >
+                View Components
+              </Button>
+            </motion.div>
           </div>
-        </div>
-      </div>
+        }
+      />
 
-      <div className="features-grid grid grid-3">
-        <Card>
-          <h3>🎯 Interactive Buttons</h3>
-          <p>Smooth hover animations and click feedback.</p>
-          <Link to="/buttons">View Examples</Link>
-        </Card>
-        <Card>
-          <h3>📱 Animated Cards</h3>
-          <p>Fade-in effects and hover states.</p>
-          <Link to="/cards">View Examples</Link>
-        </Card>
-        <Card>
-          <h3>🔲 Slide-in Modals</h3>
-          <p>Professional modal dialogs with animations.</p>
-          <Link to="/modals">View Examples</Link>
-        </Card>
-      </div>
+      <section className="features-grid grid grid-3">
+        <motion.div
+          className="features-header"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          viewport={{ once: true }}
+        >
+          <h2>Powerful Components</h2>
+          <p>
+            Discover our collection of beautifully animated UI components designed for modern web
+            applications.
+          </p>
+        </motion.div>
 
-      <div className="upgrade-cta">
-        <h2>🚀 Ready for More?</h2>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          <Card variant="icon" icon={CursorArrowRaysIcon}>
+            <h3>Interactive Buttons</h3>
+            <p>Smooth hover animations and click feedback with multiple variants and sizes.</p>
+            <Button variant="ghost" size="sm">
+              <Link to="/buttons" style={{ color: 'inherit', textDecoration: 'none' }}>
+                View Examples
+              </Link>
+            </Button>
+          </Card>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.4 }}
+          viewport={{ once: true }}
+        >
+          <Card variant="icon" icon={RectangleStackIcon}>
+            <h3>Animated Cards</h3>
+            <p>Fade-in effects, hover states, and flexible layouts with loading states.</p>
+            <Button variant="ghost" size="sm">
+              <Link to="/cards" style={{ color: 'inherit', textDecoration: 'none' }}>
+                View Examples
+              </Link>
+            </Button>
+          </Card>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <Card variant="icon" icon={Squares2X2Icon}>
+            <h3>Slide-in Modals</h3>
+            <p>Professional modal dialogs with smooth animations and accessibility features.</p>
+            <Button variant="ghost" size="sm">
+              <Link to="/modals" style={{ color: 'inherit', textDecoration: 'none' }}>
+                View Examples
+              </Link>
+            </Button>
+          </Card>
+        </motion.div>
+      </section>
+
+      <motion.section
+        className="upgrade-cta"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        viewport={{ once: true }}
+      >
+        <h2>Ready for More?</h2>
         <p>Get 20+ advanced components, full design system, and motion presets.</p>
-        <a href="#" className="cta-button">Upgrade to Pro</a>
-      </div>
-    </div>
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+        >
+          <Button size="lg" icon={<SparklesIcon />}>
+            <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>
+              Upgrade to Pro
+            </a>
+          </Button>
+        </motion.div>
+      </motion.section>
+    </main>
   );
 };
 

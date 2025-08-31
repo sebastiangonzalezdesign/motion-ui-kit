@@ -34,11 +34,16 @@ const Toggle: React.FC<ToggleProps> = ({ initialState = false, onToggle }) => {
           layout
           transition={{ type: 'spring', stiffness: 700, damping: 30 }}
         >
-          {isOn ? (
-            <CheckIcon className="toggle-icon" />
-          ) : (
-            <XMarkIcon className="toggle-icon" />
-          )}
+          <motion.div
+            key={isOn ? 'check' : 'x'}
+            initial={{ scale: 0, rotate: -180 }}
+            animate={{ scale: 1, rotate: 0 }}
+            exit={{ scale: 0, rotate: 180 }}
+            transition={{ duration: 0.2, ease: 'easeInOut' }}
+            className="toggle-icon-container"
+          >
+            {isOn ? <CheckIcon className="toggle-icon" /> : <XMarkIcon className="toggle-icon" />}
+          </motion.div>
         </motion.div>
       </motion.div>
     </motion.button>

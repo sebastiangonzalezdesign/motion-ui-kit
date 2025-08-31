@@ -28,14 +28,12 @@ const CodePreview: React.FC<CodePreviewProps> = ({ preview, code, title }) => {
         </button>
       </div>
       <div className="tab-content">
-        {activeTab === 'preview' && (
-          <div className="preview-content">
-            {preview}
-          </div>
-        )}
+        {activeTab === 'preview' && <div className="preview-content">{preview}</div>}
         {activeTab === 'code' && (
           <div className="code-content">
-            <pre><code>{code}</code></pre>
+            <pre>
+              <code>{code}</code>
+            </pre>
           </div>
         )}
       </div>

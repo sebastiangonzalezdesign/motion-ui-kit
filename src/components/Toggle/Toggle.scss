@@ -16,15 +16,28 @@
 .toggle-track {
   width: 3rem;
   height: 1.5rem;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: $background-secondary;
   border-radius: 0.75rem;
   position: relative;
   display: flex;
   align-items: center;
+  border: 1px solid $border-color;
+
+  // Enhanced dark mode support
+  [data-theme='dark'] & {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: $border-color-dark;
+  }
 }
 
 .toggle.on .toggle-track {
   background-color: $brand-primary;
+
+  // Enhanced dark mode support
+  [data-theme='dark'] & {
+    background-color: $brand-primary;
+    box-shadow: 0 0 0 1px $brand-primary;
+  }
 }
 
 .toggle-thumb {
@@ -38,18 +51,56 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   position: absolute;
   left: 0.125rem;
+
+  // Enhanced dark mode support
+  [data-theme='dark'] & {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  }
 }
 
 .toggle.on .toggle-thumb {
   left: calc(100% - 1.375rem);
 }
 
+.toggle-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
 .toggle-icon {
   width: 0.75rem;
   height: 0.75rem;
   color: $brand-primary;
+  flex-shrink: 0;
 }
 
 .toggle.on .toggle-icon {
   color: white;
+}
+
+.toggle:hover .toggle-track {
+  // Enhanced dark mode support
+  [data-theme='dark'] & {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
+.toggle.on:hover .toggle-track {
+  // Enhanced dark mode support
+  [data-theme='dark'] & {
+    background-color: $brand-hover;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggle {
+    transition: none;
+  }
+
+  .toggle-icon-container {
+    animation: none;
+  }
 }

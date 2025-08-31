@@ -1,20 +1,71 @@
 // CSS Variables for themes
 :root {
   --gray-50: #f9fafb;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
   --gray-900: #111827;
   --blue-500: #3b82f6;
   --blue-600: #2563eb;
+  --blue-100: #dbeafe;
+  --blue-50: #eff6ff;
+  --blue-700: #1d4ed8;
+  --blue-800: #1e40af;
+  --blue-900: #1e3a8a;
+  --green-500: #10b981;
+  --green-600: #059669;
+  --yellow-500: #f59e0b;
+  --yellow-600: #d97706;
+  --red-500: #ef4444;
+  --red-600: #dc2626;
+  --text-secondary: #6b7280;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --background-primary: #f9fafb;
+  --brand-primary: #3b82f6;
 }
 
-[data-theme="dark"] {
+[data-theme='dark'] {
   --gray-50: #111827;
+  --gray-500: #9ca3af;
+  --gray-600: #d1d5db;
   --gray-900: #f9fafb;
   --blue-500: #60a5fa;
   --blue-600: #3b82f6;
+  --blue-100: #1e3a8a;
+  --blue-50: #1e293b;
+  --blue-700: #3b82f6;
+  --blue-800: #2563eb;
+  --blue-900: #1d4ed8;
+  --green-500: #34d399;
+  --green-600: #10b981;
+  --yellow-500: #fbbf24;
+  --yellow-600: #f59e0b;
+  --red-500: #f87171;
+  --red-600: #ef4444;
+  --text-secondary: #9ca3af;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --background-primary: #111827;
+  --brand-primary: #60a5fa;
 }
 
 // SCSS variables (for compatibility)
 $gray-50: var(--gray-50);
+$gray-500: var(--gray-500);
+$gray-600: var(--gray-600);
 $gray-900: var(--gray-900);
 $blue-500: var(--blue-500);
 $blue-600: var(--blue-600);
+$blue-100: var(--blue-100);
+$blue-50: var(--blue-50);
+$blue-700: var(--blue-700);
+$blue-800: var(--blue-800);
+$blue-900: var(--blue-900);
+$green-500: var(--green-500);
+$green-600: var(--green-600);
+$yellow-500: var(--yellow-500);
+$yellow-600: var(--yellow-600);
+$red-500: var(--red-500);
+$red-600: var(--red-600);
+$text-secondary: var(--text-secondary);
+$border-color: var(--border-color);
+$background-primary: var(--background-primary);
+$brand-primary: var(--brand-primary);

@@ -1,0 +1,489 @@
+@use '../../styles/abstracts/colors' as *;
+@use '../../styles/abstracts/tokens' as *;
+@use '../../styles/abstracts/breakpoints' as *;
+
+.hero {
+  width: 100%;
+  // reserve extra top space so mobile top-centered illustrations don't overlap
+  padding: calc($space-2xl + 2rem) 0 $space-xl;
+  position: relative;
+  overflow: hidden;
+
+  @include respond('sm') {
+    // slightly more top padding on small screens
+    padding: calc($space-2xl + 2.5rem) 0 $space-lg;
+  }
+
+  @include respond('md') {
+    // desktop has illustrations on the right, reduce top padding slightly
+    padding: calc($space-2xl + 1rem) 0 $space-xl;
+  }
+
+  // Background color variants
+  &--primary {
+    background-color: $background-primary !important;
+  }
+
+  &--secondary {
+    background-color: $background-secondary !important;
+  }
+
+  &--elevated {
+    background-color: $surface-elevated !important;
+
+    [data-theme='dark'] & {
+      background-color: $surface-elevated-dark !important;
+    }
+  }
+
+  &--brand-soft {
+    background-color: $brand-bg-soft !important;
+  }
+
+  &--brand-light {
+    background-color: $brand-bg-light !important;
+  }
+
+  &--brand-gradient {
+    background: $brand-bg-gradient !important;
+
+    [data-theme='dark'] & {
+      background: $brand-bg-gradient-dark !important;
+    }
+  }
+
+  // Border radius modifiers
+  &--radius-none {
+    border-radius: $radius-none;
+  }
+  &--radius-sm {
+    border-radius: $radius-sm;
+  }
+  &--radius-md {
+    border-radius: $radius-md;
+  }
+  &--radius-lg {
+    border-radius: $radius-lg;
+  }
+  &--radius-xl {
+    border-radius: $radius-xl;
+  }
+  &--radius-full {
+    border-radius: $radius-full;
+  }
+
+  // Floating component previews
+  .hero__floating-preview {
+    position: absolute;
+    z-index: 1;
+    opacity: 0.16;
+    pointer-events: none;
+
+    // MOBILE / small screens: top-centered, stacked vertically
+    &--1,
+    &--2 {
+      left: 50%;
+      transform: translateX(-50%) scale(0.6);
+      top: 4%;
+      width: auto;
+    }
+
+    &--2 {
+      top: 18%;
+      transform: translateX(-50%) scale(0.5);
+    }
+
+    // Medium and up: place stacked on the right side (one above the other)
+    @include respond('md') {
+      &--1 {
+        left: auto;
+        right: 8%;
+        top: 10%;
+        transform: scale(0.85);
+      }
+
+      &--2 {
+        left: auto;
+        right: 8%;
+        top: 40%;
+        transform: scale(0.75);
+      }
+    }
+
+    @include respond('lg') {
+      &--1 {
+        right: 12%;
+        top: 8%;
+        transform: scale(1);
+      }
+
+      &--2 {
+        right: 12%;
+        top: 46%;
+        transform: scale(0.9);
+      }
+    }
+  }
+
+  /* illustrations container wraps both previews */
+  .hero__illustrations {
+    position: absolute;
+    inset: 0; // allow children to position relative to hero
+    pointer-events: none;
+    z-index: 1;
+
+    // center stacked on mobile
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: $space-md;
+
+    @include respond('md') {
+      // place on right stacked vertically
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding-right: $space-2xl;
+    }
+
+    .hero__floating-preview {
+      // ensure previews are positioned inside this container in mobile
+      position: static;
+      // don't override transform with !important — allow Framer Motion to animate
+      // base layout will be handled by positioning rules; keep opacity visible on mobile
+      opacity: 0.9; // more visible when stacked center
+    }
+
+    @include respond('md') {
+      .hero__floating-preview {
+        position: absolute;
+        opacity: 0.45; // raise visibility on desktop so backgrounds are visible
+      }
+
+      .hero__floating-preview--1 {
+        right: 8%;
+        top: 10%;
+        transform: scale(0.9);
+        z-index: 3;
+      }
+
+      .hero__floating-preview--2 {
+        right: 10%;
+        top: 30%;
+        transform: scale(0.8);
+        z-index: 2; // behind preview 1
+        transform-origin: top left;
+        // slight offset to bottom-left relative to preview 1
+        translate: -8% 8%;
+      }
+    }
+  }
+
+  .hero__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $space-md;
+    position: relative;
+    z-index: 2;
+    padding-bottom: $space-lg;
+
+    @include respond('sm') {
+      padding: 0 $space-lg;
+      padding-bottom: $space-xl;
+    }
+
+    @include respond('md') {
+      padding: 0 $space-xl;
+      padding-bottom: $space-2xl;
+    }
+
+    @include respond('lg') {
+      padding: 0 $space-2xl;
+      padding-bottom: $space-2xl;
+    }
+  }
+
+  // Floating component previews
+  /* Duplicate floating-preview rules removed — positioning is handled by .hero__illustrations */
+
+  // Preview card styles
+  .preview-card {
+    background: $background-primary;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: $space-md;
+    padding: $space-lg;
+    width: 280px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+
+    [data-theme='dark'] & {
+      background: $background-secondary;
+      border-color: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  .preview-header {
+    display: flex;
+    gap: $space-xs;
+    margin-bottom: $space-sm;
+  }
+
+  .preview-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.3);
+
+    [data-theme='dark'] & {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    &:nth-child(1) {
+      background: #ef4444;
+    }
+    &:nth-child(2) {
+      background: #f59e0b;
+    }
+    &:nth-child(3) {
+      background: #10b981;
+    }
+  }
+
+  .preview-content {
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+  }
+
+  .preview-text {
+    height: 14px;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: $space-xs;
+
+    [data-theme='dark'] & {
+      background: rgba(255, 255, 255, 0.15);
+    }
+  }
+
+  .preview-button {
+    height: 28px;
+    background: $brand-primary;
+    border-radius: $space-xs;
+    width: 70%;
+    opacity: 0.9;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  // Preview modal styles
+  .preview-modal {
+    background: $background-primary;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: $space-md;
+    padding: $space-lg;
+    width: 320px;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+
+    [data-theme='dark'] & {
+      background: $background-secondary;
+      border-color: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  .preview-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $space-md;
+  }
+
+  .preview-modal-title {
+    height: 16px;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: $space-xs;
+    width: 75%;
+
+    [data-theme='dark'] & {
+      background: rgba(255, 255, 255, 0.15);
+    }
+  }
+
+  .preview-modal-close {
+    width: 20px;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: $space-xs;
+
+    [data-theme='dark'] & {
+      background: rgba(255, 255, 255, 0.15);
+    }
+  }
+
+  .preview-modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+  }
+
+  .preview-modal-text {
+    height: 12px;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: $space-xs;
+
+    [data-theme='dark'] & {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    &:nth-child(2) {
+      width: 85%;
+    }
+    &:nth-child(3) {
+      width: 65%;
+    }
+  }
+
+  .preview-modal-buttons {
+    display: flex;
+    gap: $space-sm;
+    justify-content: flex-end;
+  }
+
+  .preview-modal-buttons::before,
+  .preview-modal-buttons::after {
+    content: '';
+    height: 24px;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: $space-xs;
+    flex: 1;
+
+    [data-theme='dark'] & {
+      background: rgba(255, 255, 255, 0.15);
+    }
+  }
+
+  .hero__content {
+    display: flex;
+    align-items: center;
+    gap: $space-xl;
+    flex-direction: column;
+    position: relative;
+    z-index: 3;
+
+    @include respond('md') {
+      flex-direction: row;
+    }
+  }
+
+  .hero__text {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    z-index: 4;
+    margin-bottom: $space-lg;
+
+    @include respond('sm') {
+      margin-bottom: $space-xl;
+    }
+
+    @include respond('md') {
+      text-align: left;
+      margin-bottom: 0;
+    }
+  }
+
+  .hero__headline {
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    color: $text-primary;
+    margin: 0 0 $space-md 0;
+    line-height: 1.2;
+
+    @include respond('sm') {
+      font-size: $font-size-3xl;
+    }
+
+    @include respond('md') {
+      font-size: $font-size-3xl;
+    }
+
+    // Size-based font sizes
+    .hero--size-sm & {
+      font-size: $font-size-2xl;
+
+      @include respond('md') {
+        font-size: $font-size-2xl;
+      }
+    }
+
+    .hero--size-lg & {
+      font-size: calc($font-size-3xl * 1.2);
+
+      @include respond('md') {
+        font-size: calc($font-size-3xl * 1.2);
+      }
+    }
+
+    .hero--size-xl & {
+      font-size: calc($font-size-3xl * 1.5);
+
+      @include respond('md') {
+        font-size: calc($font-size-3xl * 1.5);
+      }
+    }
+  }
+
+  .hero__description {
+    font-size: $font-size-lg;
+    color: $text-primary;
+    margin: 0 0 $space-lg 0;
+    line-height: 1.6;
+    opacity: 0.8;
+
+    @include respond('sm') {
+      font-size: $font-size-lg;
+    }
+  }
+
+  .hero__actions {
+    display: flex;
+    gap: $space-md;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @include respond('md') {
+      justify-content: flex-start;
+    }
+  }
+
+  .hero__image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: $space-md;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+      [data-theme='dark'] & {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    @include respond('md') {
+      justify-content: flex-end;
+    }
+  }
+
+  // Enhanced dark mode support
+  [data-theme='dark'] {
+    .hero__description {
+      opacity: 0.9;
+    }
+  }
+}

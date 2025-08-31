@@ -1,0 +1,71 @@
+@use '../abstracts/colors' as *;
+@use '../abstracts/tokens' as *;
+
+// Shared component helper utilities used by example pages and lightweight utilities.
+
+/* Backwards-compatible helper used by example pages */
+.modal-content-center {
+  text-align: center;
+  padding: $space-xl 0;
+}
+
+/* Actions layout helper for small-footprint examples */
+.modal-actions {
+  display: flex;
+  gap: $space-sm;
+  justify-content: flex-end;
+  margin-top: $space-lg;
+}
+
+.modal-actions--centered {
+  justify-content: center;
+}
+
+/* Icon helpers used in previews */
+.modal-icon,
+.success-icon {
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto $space-lg;
+  color: $green-500;
+}
+
+.modal-icon--large {
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto $space-xl;
+}
+
+.warning-icon {
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto $space-lg;
+  color: $yellow-500;
+}
+
+/* Small utility for muted helper text */
+.muted-text {
+  color: rgba($text-primary, 0.6);
+  font-size: 0.875rem;
+}
+
+/* Inline icon helper used in 'Pro Tip' cards */
+.inline-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  display: inline;
+  margin-right: 0.5rem;
+}
+
+/* Small example block spacing helper */
+.example-block {
+  display: block;
+  margin-top: 0.75rem;
+}
+
+/* Margin helpers (tiny set) */
+.ml-1 {
+  margin-left: 0.5rem;
+}
