@@ -1,22 +1,23 @@
-// Import abstracts
-@import 'abstracts/colors';
-@import 'abstracts/tokens';
-@import 'abstracts/motion';
+// Use abstracts
+@use 'abstracts/colors' as *;
+@use 'abstracts/tokens' as *;
+@use 'abstracts/motion' as *;
+@use 'abstracts/breakpoints' as *;
 
-// Import base
-@import 'base/reset';
-@import 'base/typography';
+// Use base
+@use 'base/reset' as *;
+@use 'base/typography' as *;
 
-// Import layout
-@import 'layout/grid';
+// Use layout
+@use 'layout/grid' as *;
 
-// Import components
-@import '../components/Button/Button.scss';
-@import '../components/Card/Card.scss';
-@import '../components/Modal/Modal.scss';
-@import '../components/Navbar/Navbar.scss';
-@import '../components/ThemeToggle/ThemeToggle.scss';
-@import '../components/Toggle/Toggle.scss';
+// Use components
+@use '../components/Button/Button.scss' as *;
+@use '../components/Card/Card.scss' as *;
+@use '../components/Modal/Modal.scss' as *;
+@use '../components/Navbar/Navbar.scss' as *;
+@use '../components/ThemeToggle/ThemeToggle.scss' as *;
+@use '../components/Toggle/Toggle.scss' as *;
 
 // App styles
 .app {
@@ -28,11 +29,27 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
+
+  @include respond('sm') {
+    padding: 1.5rem;
+  }
+
+  @include respond('md') {
+    padding: 2rem;
+  }
 }
 
 .page {
-  margin-top: 2rem;
+  margin-top: 1rem;
+
+  @include respond('sm') {
+    margin-top: 1.5rem;
+  }
+
+  @include respond('md') {
+    margin-top: 2rem;
+  }
 }
 
 .upgrade-cta {

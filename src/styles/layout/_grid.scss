@@ -1,14 +1,32 @@
-// Basic grid system
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
+@use '../abstracts/breakpoints' as *;
 
+// Basic grid system
 .grid {
   display: grid;
   gap: 1rem;
 }
 
-.grid-2 { grid-template-columns: repeat(2, 1fr); }
-.grid-3 { grid-template-columns: repeat(3, 1fr); }
+// Responsive grid classes
+.grid-1 {
+  grid-template-columns: 1fr;
+}
+
+.grid-2 {
+  grid-template-columns: 1fr; // 1 column on mobile
+
+  @include respond('sm') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.grid-3 {
+  grid-template-columns: 1fr; // 1 column on mobile
+
+  @include respond('sm') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond('lg') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

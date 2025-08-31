@@ -1,6 +1,7 @@
-@import '../../styles/abstracts/colors';
-@import '../../styles/abstracts/tokens';
-@import '../../styles/abstracts/motion';
+@use '../../styles/abstracts/colors' as *;
+@use '../../styles/abstracts/tokens' as *;
+@use '../../styles/abstracts/motion' as *;
+@use '../../styles/abstracts/breakpoints' as *;
 
 .button {
   padding: 0.75rem 1.5rem;
@@ -11,8 +12,48 @@
   font-size: 1rem;
   cursor: pointer;
   transition: background-color $motion-normal;
+  width: 100%; // Fluid on mobile
 
   &:hover {
     background-color: $brand-hover;
+  }
+
+  // Responsive sizing
+  @include respond('sm') {
+    width: auto; // Auto width on small screens and up
+    padding: 0.875rem 1.75rem;
+    font-size: 1.0625rem;
+  }
+
+  @include respond('md') {
+    padding: 1rem 2rem;
+  }
+}
+
+.button-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+
+  @include respond('sm') {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  @include respond('md') {
+    padding: 0.5rem 1rem;
+  }
+}
+
+.button-lg {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+
+  @include respond('sm') {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
+
+  @include respond('md') {
+    padding: 1rem 2rem;
   }
 }

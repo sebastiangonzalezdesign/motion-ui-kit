@@ -4,12 +4,13 @@ import './Button.scss';
 interface ButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
+  size?: 'sm' | 'md' | 'lg';
 }
 
-const Button: React.FC<ButtonProps> = ({ children, onClick }) => {
+const Button: React.FC<ButtonProps> = ({ children, onClick, size = 'md' }) => {
   return (
     <motion.button
-      className="button"
+      className={`button button-${size}`}
       onClick={onClick}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}

@@ -1,6 +1,6 @@
-@import '../../styles/abstracts/colors';
-@import '../../styles/abstracts/tokens';
-@import '../../styles/abstracts/motion';
+@use '../../styles/abstracts/colors' as *;
+@use '../../styles/abstracts/tokens' as *;
+@use '../../styles/abstracts/motion' as *;
 
 .toggle {
   background: none;

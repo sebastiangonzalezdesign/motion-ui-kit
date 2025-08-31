@@ -1,0 +1,101 @@
+@use '../../styles/abstracts/colors' as *;
+@use '../../styles/abstracts/tokens' as *;
+@use '../../styles/abstracts/breakpoints' as *;
+
+.code-preview {
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  overflow: hidden;
+
+  @include respond('sm') {
+    margin-bottom: 2rem;
+  }
+}
+
+.code-preview h4 {
+  margin: 0;
+  padding: 0.75rem;
+  background-color: rgba(0, 0, 0, 0.05);
+  font-size: 0.875rem;
+  font-weight: 600;
+
+  @include respond('sm') {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+}
+
+.tabs {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.tab {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: background-color 0.2s;
+  color: $text-primary;
+
+  @include respond('sm') {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+.tab:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.tab.active {
+  background-color: $background-primary;
+  color: $brand-primary;
+  border-bottom: 2px solid $brand-primary;
+}
+
+.tab-content {
+  padding: 1rem;
+  background-color: $background-primary;
+
+  @include respond('sm') {
+    padding: 1.25rem;
+  }
+
+  @include respond('md') {
+    padding: 1.5rem;
+  }
+}
+
+.preview-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+}
+
+.code-content {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 0.25rem;
+  overflow-x: auto;
+}
+
+.code-content pre {
+  margin: 0;
+  padding: 1rem;
+  font-size: $font-size-sm;
+  line-height: 1.5;
+  color: $text-primary;
+  font-family: $font-family-code;
+}
+
+.code-content code {
+  font-family: $font-family-code;
+  background: none;
+  padding: 0;
+}

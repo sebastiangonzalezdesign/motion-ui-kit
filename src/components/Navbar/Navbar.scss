@@ -1,37 +1,319 @@
-@import '../../styles/abstracts/colors';
-@import '../../styles/abstracts/tokens';
+@use '../../styles/abstracts/colors' as *;
+@use '../../styles/abstracts/tokens' as *;
+@use '../../styles/abstracts/motion' as *;
+@use '../../styles/abstracts/breakpoints' as *;
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 1rem;
   background-color: $background-primary;
   border-bottom: 1px solid #e5e7eb;
+  position: relative; // For absolute positioning of mobile menu
+  z-index: 1000; // High z-index for navbar
+
+  // Responsive padding
+  @include respond('sm') {
+    padding: 1rem 1.5rem;
+  }
+
+  @include respond('md') {
+    padding: 1rem 2rem;
+  }
 }
 
 .navbar-brand a {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: bold;
   color: $brand-primary;
   text-decoration: none;
+
+  @include respond('sm') {
+    font-size: 1.5rem;
+  }
 }
+  .buttons-wrapper{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    /* Keep same layout on tablet */
+    @include respond('md') {
+      display: flex;
+    }
+  }
+
+  /* Hide buttons-wrapper on desktop where full actions are shown */
+  @include respond('lg') {
+    .buttons-wrapper {
+      display: none !important;
+    }
+  }
 
 .navbar-nav {
+  // Hidden on mobile by default using visibility instead of display
   display: flex;
+  visibility: visible;
+  opacity: 1;
   list-style: none;
   margin: 0;
   padding: 0;
+  position: absolute; // Position relative to navbar
+  top: 100%; // Start below navbar
+  
+  /* On tablet place Theme button before Menu toggle: Upgrade -> Theme -> Menu */
+  /* Order on tablet: Theme -> Actions (Upgrade) -> Menu */
+
+  .navbar-right .theme-toggle { order: 1; }
+  .navbar-right .navbar-nav.actions { order: 2; }
+  .navbar-right .menu-toggle { order: 3; }
+  left: 0;
+  right: 0;
+  max-height: 0; // Start collapsed
+  overflow: hidden; // Hide content when collapsed
+  background-color: $background-primary;
+  border-bottom: 1px solid #e5e7eb;
+  flex-direction: column;
+  padding: 1rem; // Keep padding consistent
+  z-index: 999; // Below navbar but above content
+  clip-path: inset(0 0 100% 0); // Start with content hidden from bottom
+  transition: clip-path 0.3s ease-out, max-height 0.3s ease-out; // Even faster expansion
+  // keep collapsed by default; when active we'll set max-height and overflow-y
+
+  @include respond('lg') {
+  visibility: visible;
+  opacity: 1;
+  position: static;
+  flex-direction: row;
+  padding: 0;
+  background-color: transparent;
+  border-bottom: none;
+  box-shadow: none;
+  max-height: none;
+  overflow: visible;
+  clip-path: none;
+  transition: none;
+  width: auto;
+  margin: 0 auto;
+  }
+
+  // Active state for mobile menu
+  &.active {
+  max-height: calc(100vh - 52px); // Expand to fill remaining viewport
+  clip-path: inset(0 0 0 0); // Reveal full content
+  visibility: visible;
+  opacity: 1;
+  overflow-y: auto; // allow scrolling when expanded
+  }
+}
+
+.navbar-center {
+  /* Hidden on mobile; visible on tablet and desktop */
+  display: none;
+  position: static;
+  left: auto;
+  transform: none;
+  pointer-events: auto;
+
+  @include respond('md') {
+    display: block;
+    width: 100%;
+  }
+
+  .navbar-nav {
+    /* when inside .navbar-center on small screens keep full-width collapsible behavior */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+  }
+
+  @include respond('lg') {
+    /* On desktop, center the nav */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    display: flex;
+    align-items: center;
+
+    .navbar-nav {
+      position: static;
+      flex-direction: row;
+      background: transparent;
+      padding: 0;
+      clip-path: none;
+      max-height: none;
+      overflow: visible;
+    }
+  }
+}
+
+.navbar-nav.actions {
+  display: none;
+
+  @include respond('md') {
+    display: flex;
+  }
+}
+
+.navbar-nav.main li:nth-child(n+5) {
+  // Hide Docs/GitHub/Upgrade from the main list on tablet (they're in the right actions)
+  @media (min-width: 768px) and (max-width: 1023px) {
+    display: none;
+  }
+
+  // On desktop, keep the main nav only the core links (Home/Buttons/Cards/Modals)
+  @include respond('lg') {
+    display: none;
+  }
+}
+
+.navbar-nav.actions li:nth-child(1),
+.navbar-nav.actions li:nth-child(2) {
+  @media (min-width: 768px) and (max-width: 1023px) {
+    display: none;
+  }
+}
+
+.mobile-only {
+  @include respond('md') {
+    display: none;
+  }
+}
+
+.navbar-right {
+  /* Hidden on mobile; visible on tablet+ */
+  display: none;
+
+  @include respond('md') {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative; /* keep actions above the collapsing center nav */
+    z-index: 1001;
+  }
+}
+
+/* Keep the Upgrade button visible on tablet explicitly */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .navbar-nav.actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .navbar-nav.actions li:last-child {
+    display: inline-flex;
+  }
+}
+
+/* Ensure only the right-side menu toggle is visible on tablet (hide mobile-only) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Force-hide any mobile-only toggles in the navbar */
+  nav .menu-toggle.mobile-only {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  /* Ensure the right-side toggle is visible and highest specificity */
+  nav .navbar-right > .menu-toggle {
+    display: inline-flex !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  /* Hide any other .menu-toggle instances that are not the right-side toggle */
+  nav .menu-toggle:not(.mobile-only):not(.navbar-right .menu-toggle) {
+    display: none !important;
+  }
+}
+
+/* Hide tablet toggle on desktop to avoid ghost toggles */
+@media (min-width: 1024px) {
+  .navbar-right .menu-toggle {
+    display: none !important;
+  }
+
+  .menu-toggle.mobile-only {
+    display: none !important;
+  }
+}
+
+/* Explicit tablet positioning for right actions to ensure Upgrade button is visible left of the theme toggle */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .navbar-right {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+    z-index: 1002;
+  }
+
+  .navbar-right .navbar-nav.actions {
+    position: static;
+    background: transparent;
+    padding: 0;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .navbar-right .navbar-nav.actions li {
+    margin: 0;
+  }
+
+  /* Make menu-toggle inline in the right area and avoid large hit area overlap */
+  .navbar-right .menu-toggle {
+    display: inline-flex;
+    padding: 0.25rem;
+    margin-left: 0.25rem;
+  }
+}
+
+// Ensure the menu-toggle shows on tablet and hidden on desktop
+.menu-toggle {
+  /* don't show globally; visibility is controlled by the specific selectors
+     `.menu-toggle.mobile-only` (mobile) and `.navbar-right .menu-toggle` (tablet) */
+  display: none;
+  @include respond('lg') {
+    display: none;
+  }
 }
 
 .navbar-nav li {
-  margin: 0 1rem;
+  margin: 0.5rem 0;
+
+  @include respond('lg') {
+    margin: 0 1rem;
+  }
 }
 
 .navbar-nav a {
   text-decoration: none;
   color: $text-primary;
   font-weight: 500;
+  display: block;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+  @include respond('lg') {
+    display: inline;
+    padding: 0;
+    border-bottom: none;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    color: $brand-primary;
+  }
 }
 
 .navbar-nav a:hover {
@@ -39,8 +321,14 @@
 }
 
 .navbar-links {
-  display: flex;
-  gap: 1rem;
+  display: none; // Hidden on mobile
+  gap: 0.5rem;
+  align-items: center;
+
+  @include respond('md') {
+    display: flex; // Show on desktop
+    gap: 1rem;
+  }
 }
 
 .navbar-links a {
@@ -51,11 +339,130 @@
 .upgrade-link {
   background-color: $brand-primary;
   color: $background-primary;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 0.5rem;
   font-weight: 500;
+  font-size: 0.875rem;
+
+  @include respond('sm') {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
 }
 
 .upgrade-link:hover {
   background-color: $brand-hover;
+}
+
+// Mobile menu toggle (to be implemented in React component)
+.menu-toggle {
+  display: block;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: $text-primary;
+  padding: 0.375rem; /* smaller consistent padding */
+  border-radius: 0.375rem;
+  transition: background-color $motion-fast;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  @include respond('md') {
+    display: block; // Show on tablet
+  }
+
+  @include respond('lg') {
+    display: none; // Hide on desktop
+  }
+}
+
+/* Mobile-only toggle */
+.menu-toggle.mobile-only {
+  display: block;
+
+  @include respond('md') {
+    display: none; /* Hide on tablet+ since right toggle exists */
+  }
+}
+
+/* Make the mobile hamburger match tablet/desktop size */
+.menu-toggle.mobile-only {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.375rem;
+  border-radius: 0.375rem;
+  font-size: 1.25rem; /* slightly larger icon */
+}
+
+/* Force exact sizing so mobile shows same 40x40 as tablet/desktop */
+.menu-toggle.mobile-only {
+  box-sizing: border-box;
+  width: 40px;
+  height: 40px;
+  padding: 0; /* remove padding to avoid affecting computed width */
+}
+
+.menu-toggle.mobile-only .icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Right-side toggle should be hidden on mobile (kept for tablet) */
+.navbar-right .menu-toggle {
+  display: none;
+
+  @include respond('md') {
+    display: inline-flex;
+    padding: 0.375rem;
+    border-radius: 0.375rem;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @include respond('lg') {
+    display: none; /* Hide on desktop where nav is full */
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+// Mobile menu backdrop
+.menu-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998; // Below menu but above content
+  animation: fadeIn $motion-normal;
+
+  @include respond('lg') {
+    display: none;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

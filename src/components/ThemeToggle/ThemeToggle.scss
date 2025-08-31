@@ -1,13 +1,15 @@
-@import '../../styles/abstracts/colors';
-@import '../../styles/abstracts/tokens';
+@use '../../styles/abstracts/colors' as *;
+@use '../../styles/abstracts/tokens' as *;
 
 .theme-toggle {
   background: none;
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
+  padding: 0.375rem;
+  border-radius: 0.375rem;
+  width: 40px;
+  height: 40px;
   transition: background-color 0.3s;
   display: flex;
   align-items: center;

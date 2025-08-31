@@ -1,9 +1,20 @@
-@import '../../styles/abstracts/colors';
-@import '../../styles/abstracts/tokens';
+@use '../../styles/abstracts/colors' as *;
+@use '../../styles/abstracts/tokens' as *;
+@use '../../styles/abstracts/breakpoints' as *;
 
 .card {
   background-color: $background-primary;
   border-radius: 0.5rem;
   padding: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+
+  // Responsive padding
+  @include respond('sm') {
+    padding: 1.25rem;
+  }
+
+  @include respond('md') {
+    padding: 1.5rem;
+  }
 }

@@ -1,47 +1,73 @@
-# UI Motion Kit
+# UI Motion Kit  
 
-A starter + pro-ready library of UI micro-interactions built with **React, Vite, SCSS, and Framer Motion**.
+A **starter + pro-ready library** of UI micro-interactions built with **React, Vite, SCSS, and Framer Motion**.  
+Designed for developers and designers who want scalable, animated components with a design-system mindset.  
 
-## ✨ Features
+---
 
-- **Dark Mode First**: Defaults to dark theme for a modern look
-- **Theme Toggle**: Switch between light and dark modes with Heroicons
-- **Smooth Animations**: Powered by Framer Motion
-- **Heroicons Integration**: Professional SVG icons throughout
-- **Modular SCSS**: Organized design system with tokens
-- **Component Gallery**: Live demos with code snippets
-- **Interactive Components**: Toggle switches, buttons, cards, and modals
+## ✨ Features  
 
-## 🚀 Live Demo
+- 🎨 **Dark Mode First** — modern dark theme by default  
+- 🌗 **Theme Toggle** — light/dark switch with Heroicons  
+- 🌀 **Smooth Animations** — powered by Framer Motion  
+- 📚 **Component Gallery** — live interactive demos + code snippets  
+- ⚡ **Interactive UI Components** — buttons, cards, modals, toggles  
+- 🧩 **Modular SCSS** — organized design system with tokens  
 
-When you run `npm install && npm run dev`, you'll see:
-- **Navigation Bar** with theme toggle (☀️/🌙 icons)
-- **Home Page** with component overview
-- **Interactive Demos** for each component
-- **Code Snippets** showing implementation
-- **Theme Switching** with persistent storage
+---
 
-## 📦 Components Included
+## 🚀 Live Demo  
 
-### Free Version
-- **Button**: Interactive buttons with hover animations
-- **Card**: Cards with fade-in animations
-- **Modal**: Slide-in modals for user interactions
-- **Toggle**: Animated toggle switches with Heroicons (✓/✗)
-- **ThemeToggle**: Theme switcher with Sun/Moon icons
+After cloning:  
 
-### Pro Version (Coming Soon)
-- Extended design system (semantic tokens, multiple themes)
-- Advanced motion components (Tabs, Dropdown, Sidebar, micro-interactions)
-- Storybook for documentation
-- Extended motion tokens (slow, bounce, etc.)
-- Granular token overrides for custom themes
+```bash
+npm install
+npm run dev
+```
 
-## 🛠️ Tech Stack
+You’ll see:  
+- **Navigation Bar** with theme toggle (☀️/🌙)  
+- **Home Page** with component overview  
+- **Interactive Component Demos** (with animations)  
+- **Code Snippets** to copy-paste into your project  
+- **Theme Switching** with persistent storage  
 
-- **React 18** with TypeScript
-- **Vite** for fast development
-- **SCSS** with modular architecture
-- **Framer Motion** for animations
-- **Heroicons** for professional icons
-- **React Router** for navigation
+---
+
+## 📦 Components  
+
+### ✅ Free Version  
+- **Button** — hover and click animations  
+- **Card** — animated entry states (fade/slide)  
+- **Modal** — slide-in/out interactions  
+- **Toggle** — animated switches with Heroicons  
+- **ThemeToggle** — Sun/Moon theme switcher  
+
+### 🚀 Pro Version (Coming Soon)  
+- **Extended Design System** (semantic tokens, multi-theme)  
+- **Advanced Motion Components** (Tabs, Dropdowns, Sidebar, micro-interactions)  
+- **Storybook Documentation**  
+- **Motion Tokens** (timing presets: slow, bounce, ease-out, etc.)  
+- **Customizable Theme Tokens** (backgrounds, colors, typography scales)  
+
+---
+
+## 🛠️ Tech Stack  
+
+- ⚛️ **React 18** + TypeScript  
+- ⚡ **Vite** for lightning-fast builds  
+- 🎨 **SCSS** with design-system architecture  
+- 🌀 **Framer Motion** for animations  
+- 📦 **Heroicons** for scalable SVG icons  
+- 🔗 **React Router** for navigation  
+
+---
+
+### 🔜 Next Steps  
+- [ ] Add more free components  
+- [ ] Launch Pro version with extended library  
+- [ ] Publish demos + documentation site  
+
+---
+
+> Free React + Framer Motion UI micro-interactions with design system architecture.  

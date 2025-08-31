@@ -1,0 +1,28 @@
+// Breakpoints for free version - updated for better responsive design
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;  // Tablet start
+$breakpoint-lg: 1024px; // Desktop start
+
+// Responsive mixin
+@mixin respond($breakpoint) {
+  @if $breakpoint == 'sm' {
+    @media (min-width: $breakpoint-sm) {
+      @content;
+    }
+  } @else if $breakpoint == 'md' {
+    @media (min-width: $breakpoint-md) {
+      @content;
+    }
+  } @else if $breakpoint == 'lg' {
+    @media (min-width: $breakpoint-lg) {
+      @content;
+    }
+  }
+}
+
+// Tablet-specific mixin (768px - 1023px)
+@mixin respond-tablet {
+  @media (min-width: $breakpoint-md) and (max-width: #{$breakpoint-lg - 1px}) {
+    @content;
+  }
+}
