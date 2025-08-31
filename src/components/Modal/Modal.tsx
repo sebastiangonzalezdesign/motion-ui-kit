@@ -20,14 +20,16 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
         >
           <motion.div
             className="modal-content"
-            initial={{ y: -50, opacity: 0 }}
+            initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -50, opacity: 0 }}
+            exit={{ y: 50, opacity: 0 }}
             transition={{ duration: 0.3 }}
             onClick={(e) => e.stopPropagation()}
           >
             {children}
-            <button className="modal-close" onClick={onClose}>×</button>
+            <button className="modal-close" onClick={onClose}>
+              ×
+            </button>
           </motion.div>
         </motion.div>
       )}
