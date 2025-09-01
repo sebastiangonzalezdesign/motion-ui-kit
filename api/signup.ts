@@ -3,7 +3,7 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+async function handler(req: VercelRequest, res: VercelResponse) {
   // Set CORS headers for all responses
   const allowedOrigins = [
     'https://sebastiangonzalez.design',
@@ -109,3 +109,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     });
   }
 }
+
+module.exports = handler;
+module.exports.default = handler;
