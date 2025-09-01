@@ -51,7 +51,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
     // Send notification to you
     const notificationResult = await resend.emails.send({
       from: 'Motion UI Kit <noreply@sebastiangonzalez.design>',
-      to: ['hello@sebastiangonzalez.design'],
+      to: ['info@sebastiangonzalez.design'], // Updated to your preferred email
       subject: 'New MUIK Pro Signup',
       html: `
         <h2>New Motion UI Kit Pro Signup</h2>
@@ -65,7 +65,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
 
     // Send confirmation to user
     const confirmationResult = await resend.emails.send({
-      from: 'Sebastian <hello@sebastiangonzalez.design>',
+      from: 'Sebastian <noreply@sebastiangonzalez.design>', // Use same verified domain
       to: [email],
       subject: 'Thanks for joining Motion UI Kit Pro early access! 🎉',
       html: `
