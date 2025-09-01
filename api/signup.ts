@@ -3,6 +3,13 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// Simple in-memory store for demonstration
+// In production, you'd use a database like Supabase, PlanetScale, or Vercel KV
+const emailStore = new Set<string>();
+
+// For persistent storage, you could use Vercel KV:
+// import { kv } from '@vercel/kv';
+
 async function handler(req: VercelRequest, res: VercelResponse) {
   // Set CORS headers for all responses
   const allowedOrigins = [
@@ -43,10 +50,34 @@ async function handler(req: VercelRequest, res: VercelResponse) {
     const { email } = req.body;
 
     if (!email || typeof email !== 'string' || !email.includes('@')) {
-      return res.status(400).json({ error: 'Invalid email address' });
+      return res.status(400).json({ error: 'Valid email is required' });
     }
 
-    console.log('Processing signup for:', email);
+    // Normalize email (lowercase, trim)
+    const normalizedEmail = email.toLowerCase().trim();
+
+    console.log('Processing signup for:', normalizedEmail);
+
+    // Check for duplicate email
+    // For persistent storage with Vercel KV:
+    // const exists = await kv.get(`email:${normalizedEmail}`);
+
+    // Using in-memory store (resets on deployment):
+    if (emailStore.has(normalizedEmail)) {
+      return res.status(409).json({
+        error: 'This email is already registered for our waitlist',
+      });
+    }
+
+    // Add email to store
+    // For persistent storage:
+    // await kv.set(`email:${normalizedEmail}`, {
+    //   email: normalizedEmail,
+    //   timestamp: new Date().toISOString()
+    // });
+
+    // Using in-memory store:
+    emailStore.add(normalizedEmail);
 
     // Send notification to you
     let notificationResult;
@@ -59,6 +90,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
           <h2>New Motion UI Kit Pro Signup</h2>
           <p><strong>Email:</strong> ${email}</p>
           <p><strong>Date:</strong> ${new Date().toISOString()}</p>
+          <p><strong>Total Signups:</strong> ${emailStore.size}</p>
           <p><strong>Source:</strong> Portfolio Landing Page</p>
         `,
       });
