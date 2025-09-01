@@ -4,43 +4,54 @@ import { Resend } from 'resend';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // CORS Headers - Allow your portfolio domain and motion subdomain
+  // Set CORS headers for all responses
   const allowedOrigins = [
     'https://sebastiangonzalez.design',
     'https://motion.sebastiangonzalez.design',
-    'http://localhost:3000', // For local testing
-    'http://localhost:5173', // For local Vite dev
+    'http://localhost:3000',
+    'http://localhost:5173',
   ];
 
   const origin = req.headers.origin;
   if (origin && allowedOrigins.includes(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
+  } else {
+    // Fallback for testing
+    res.setHeader('Access-Control-Allow-Origin', 'https://sebastiangonzalez.design');
   }
 
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Max-Age', '86400'); // 24 hours
 
+  // Handle preflight requests
   if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
+    return res.status(200).end();
   }
 
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  // Check if Resend API key is configured
+  if (!process.env.RESEND_API_KEY) {
+    console.error('RESEND_API_KEY not configured');
+    return res.status(500).json({ error: 'Email service not configured' });
+  }
+
   try {
     const { email } = req.body;
 
-    if (!email || !email.includes('@')) {
+    if (!email || typeof email !== 'string' || !email.includes('@')) {
       return res.status(400).json({ error: 'Invalid email address' });
     }
 
+    console.log('Processing signup for:', email);
+
     // Send notification to you
-    await resend.emails.send({
-      from: 'Motion UI Kit <noreply@sebastiangonzalez.design>', // Use your verified domain
-      to: ['hello@sebastiangonzalez.design'], // Your email
+    const notificationResult = await resend.emails.send({
+      from: 'Motion UI Kit <noreply@sebastiangonzalez.design>',
+      to: ['hello@sebastiangonzalez.design'],
       subject: 'New MUIK Pro Signup',
       html: `
         <h2>New Motion UI Kit Pro Signup</h2>
@@ -50,9 +61,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       `,
     });
 
+    console.log('Notification sent:', notificationResult.data?.id);
+
     // Send confirmation to user
-    await resend.emails.send({
-      from: 'Sebastian <hello@sebastiangonzalez.design>', // Use your verified domain
+    const confirmationResult = await resend.emails.send({
+      from: 'Sebastian <hello@sebastiangonzalez.design>',
       to: [email],
       subject: 'Thanks for joining Motion UI Kit Pro early access! 🎉',
       html: `
@@ -73,9 +86,26 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       `,
     });
 
-    res.status(200).json({ success: true, message: 'Successfully signed up!' });
+    console.log('Confirmation sent:', confirmationResult.data?.id);
+
+    return res.status(200).json({
+      success: true,
+      message: 'Successfully signed up!',
+      notificationId: notificationResult.data?.id,
+      confirmationId: confirmationResult.data?.id,
+    });
   } catch (error) {
     console.error('Signup error:', error);
-    res.status(500).json({ error: 'Failed to process signup' });
+
+    // More specific error handling
+    if (error instanceof Error) {
+      console.error('Error message:', error.message);
+      console.error('Error stack:', error.stack);
+    }
+
+    return res.status(500).json({
+      error: 'Failed to process signup',
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined,
+    });
   }
 }
