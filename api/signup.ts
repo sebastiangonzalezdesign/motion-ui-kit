@@ -4,10 +4,22 @@ import { Resend } from 'resend';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // CORS Headers - Allow your portfolio domain
-  res.setHeader('Access-Control-Allow-Origin', 'https://sebastiangonzalez.design');
+  // CORS Headers - Allow your portfolio domain and motion subdomain
+  const allowedOrigins = [
+    'https://sebastiangonzalez.design',
+    'https://motion.sebastiangonzalez.design',
+    'http://localhost:3000', // For local testing
+    'http://localhost:5173', // For local Vite dev
+  ];
+
+  const origin = req.headers.origin;
+  if (origin && allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
 
   if (req.method === 'OPTIONS') {
     res.status(200).end();
