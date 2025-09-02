@@ -176,7 +176,39 @@ import Button from '../components/Button/Button';
       />
 
       <CodePreview
-        title="Simple Content Card"
+        title="Skeleton Loading Card"
+        preview={
+          <Card
+            loading={true}
+            title="Loading Card"
+            subtitle="This will show skeleton state"
+            badge="Loading"
+            rating={4}
+            actions={<Button size="sm">Action</Button>}
+          >
+            <p>This content won't be visible when loading is true.</p>
+          </Card>
+        }
+        code={`import Card from '../components/Card/Card';
+
+<Card
+  loading={true}
+  title="Loading Card"
+  subtitle="This will show skeleton state"
+  badge="Loading"
+  rating={4}
+  actions={<Button size="sm">Action</Button>}
+>
+  <p>This content won't be visible when loading is true.</p>
+</Card>
+
+// Notes:
+// - Set loading={true} to show skeleton state
+// - All content areas get animated placeholders
+// - Perfect for loading states while fetching data`}
+      />
+
+      <CodePreview
         preview={
           <Card
             title="Simple Card"

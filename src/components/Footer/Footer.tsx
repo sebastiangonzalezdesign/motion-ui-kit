@@ -52,18 +52,22 @@ const Footer = () => {
         {/* Center Section - Links */}
         <div className="footer-links">
           <nav className="footer-nav">
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            {/*<a href="#" target="_blank" rel="noopener noreferrer">
               Docs
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            </a> */}
+            <a
+              href="https://github.com/sebastiangonzalezdesign/motion-ui-kit"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               GitHub
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            <a href="https://sebastiangonzalez.design/" target="_blank" rel="noopener noreferrer">
               Portfolio
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            {/*<a href="#" target="_blank" rel="noopener noreferrer">
               Terms
-            </a>
+            </a> */}
           </nav>
         </div>
 
