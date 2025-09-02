@@ -12,13 +12,12 @@
   font-size: 1rem;
   cursor: pointer;
   transition: background-color $motion-normal;
-  width: 100%; // Fluid on mobile
+  width: 100%;
 
   &:hover {
     background-color: $brand-hover;
   }
 
-  // Variant styles
   &--outline {
     background-color: transparent;
     color: $brand-primary;
@@ -29,7 +28,6 @@
       color: $background-primary;
     }
 
-    // Dark mode support for outline variant
     [data-theme='dark'] & {
       color: $brand-primary;
       border-color: $brand-primary;
@@ -50,7 +48,6 @@
       background-color: rgba($brand-primary, 0.1);
     }
 
-    // Dark mode support for ghost variant
     [data-theme='dark'] & {
       color: $brand-primary;
 
@@ -60,9 +57,8 @@
     }
   }
 
-  // Responsive sizing
   @include respond('sm') {
-    width: auto; // Auto width on small screens and up
+    width: auto;
     padding: 0.875rem 1.75rem;
     font-size: 1.0625rem;
   }

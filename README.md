@@ -7,7 +7,7 @@ Motion UI Kit helps you ship modern, accessible, and consistent animations — f
 
 ## 🚀 Live Demo
 
-👉 [View Live Demo](https://your-vercel-demo-link.com)
+👉 [View Live Demo](https://motion.sebastiangonzalez.design/)
 
 Try the interactive showcase of all free components, code snippets, and dark/light mode in action.
 
