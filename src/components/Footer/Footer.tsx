@@ -69,11 +69,22 @@ const Footer = () => {
 
         {/* Right Section - Upgrade CTA */}
         <div className="footer-cta">
-          <Button size="sm" icon={<SparklesIcon />}>
-            <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>
+          <a
+            href="https://sebastiangonzalez.design/motion-ui-kit"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              color: 'inherit',
+              textDecoration: 'none',
+              display: 'block',
+              maxWidth: '200px',
+              margin: '0 auto',
+            }}
+          >
+            <Button size="sm" icon={<SparklesIcon />}>
               Upgrade to Pro
-            </a>
-          </Button>
+            </Button>
+          </a>
           <p className="cta-subtitle">8+ advanced components & motion tokens</p>
         </div>
       </div>

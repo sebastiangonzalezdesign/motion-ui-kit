@@ -26,11 +26,9 @@ const Home = () => {
               whileTap={{ scale: 0.95 }}
               transition={{ type: 'spring', stiffness: 400, damping: 17 }}
             >
-              <Button size="md">
-                <Link to="/buttons" style={{ color: 'inherit', textDecoration: 'none' }}>
-                  Get Started
-                </Link>
-              </Button>
+              <Link to="/buttons" style={{ color: 'inherit', textDecoration: 'none' }}>
+                <Button size="md">Get Started</Button>
+              </Link>
             </motion.div>
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -75,11 +73,11 @@ const Home = () => {
           <Card variant="icon" icon={CursorArrowRaysIcon}>
             <h3>Interactive Buttons</h3>
             <p>Smooth hover animations and click feedback with multiple variants and sizes.</p>
-            <Button variant="ghost" size="sm">
-              <Link to="/buttons" style={{ color: 'inherit', textDecoration: 'none' }}>
+            <Link to="/buttons" style={{ color: 'inherit', textDecoration: 'none' }}>
+              <Button variant="ghost" size="sm">
                 View Examples
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </Card>
         </motion.div>
 
@@ -92,11 +90,11 @@ const Home = () => {
           <Card variant="icon" icon={RectangleStackIcon}>
             <h3>Animated Cards</h3>
             <p>Fade-in effects, hover states, and flexible layouts with loading states.</p>
-            <Button variant="ghost" size="sm">
-              <Link to="/cards" style={{ color: 'inherit', textDecoration: 'none' }}>
+            <Link to="/cards" style={{ color: 'inherit', textDecoration: 'none' }}>
+              <Button variant="ghost" size="sm">
                 View Examples
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </Card>
         </motion.div>
 
@@ -109,11 +107,11 @@ const Home = () => {
           <Card variant="icon" icon={Squares2X2Icon}>
             <h3>Slide-in Modals</h3>
             <p>Professional modal dialogs with smooth animations and accessibility features.</p>
-            <Button variant="ghost" size="sm">
-              <Link to="/modals" style={{ color: 'inherit', textDecoration: 'none' }}>
+            <Link to="/modals" style={{ color: 'inherit', textDecoration: 'none' }}>
+              <Button variant="ghost" size="sm">
                 View Examples
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </Card>
         </motion.div>
       </section>
@@ -132,11 +130,22 @@ const Home = () => {
           whileTap={{ scale: 0.95 }}
           transition={{ type: 'spring', stiffness: 400, damping: 17 }}
         >
-          <Button size="lg" icon={<SparklesIcon />}>
-            <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>
+          <a
+            href="https://sebastiangonzalez.design/motion-ui-kit"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              color: 'inherit',
+              textDecoration: 'none',
+              display: 'block',
+              maxWidth: '320px',
+              margin: '0 auto',
+            }}
+          >
+            <Button size="lg" icon={<SparklesIcon />}>
               Upgrade to Pro
-            </a>
-          </Button>
+            </Button>
+          </a>
         </motion.div>
       </motion.section>
     </main>

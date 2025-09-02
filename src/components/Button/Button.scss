@@ -104,6 +104,8 @@
 .button {
   display: flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   &__icon {
     display: inline-flex;
     align-items: center;
@@ -127,4 +129,10 @@
   .button {
     transition: none;
   }
+}
+
+// Ensure buttons wrapped in anchor tags are fully clickable
+a .button {
+  display: flex;
+  width: 100%;
 }

@@ -96,7 +96,10 @@ const Navbar = () => {
 
       {viewport === 'mobile' && (
         <div className="buttons-wrapper">
-          <Button size="sm" onClick={() => setIsMenuOpen(false)}>
+          <Button
+            size="sm"
+            onClick={() => window.open('https://sebastiangonzalez.design/motion-ui-kit', '_blank')}
+          >
             Upgrade to Pro
           </Button>
           <ThemeToggle />
@@ -178,7 +181,12 @@ const Navbar = () => {
         {viewport === 'desktop' && (
           <ul className="navbar-nav actions">
             <li>
-              <Button size="sm" onClick={() => setIsMenuOpen(false)}>
+              <Button
+                size="sm"
+                onClick={() =>
+                  window.open('https://sebastiangonzalez.design/motion-ui-kit', '_blank')
+                }
+              >
                 Upgrade to Pro
               </Button>
             </li>
@@ -192,7 +200,12 @@ const Navbar = () => {
         {/* Shared buttons wrapper for mobile & tablet: Upgrade, Theme, Menu */}
         {viewport !== 'desktop' && (
           <div className="buttons-wrapper">
-            <Button size="sm" onClick={() => setIsMenuOpen(false)}>
+            <Button
+              size="sm"
+              onClick={() =>
+                window.open('https://sebastiangonzalez.design/motion-ui-kit', '_blank')
+              }
+            >
               Upgrade to Pro
             </Button>
             <ThemeToggle />
